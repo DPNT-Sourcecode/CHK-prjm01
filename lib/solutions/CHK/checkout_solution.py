@@ -49,7 +49,7 @@ def checkout(skus):
     # E.g. buy 2 of item E and get an item B for free:
     free_item_offers: dict[str: tuple[int, str]] = {
         "E": (2, "B"),
-        "F": (3, "F"), # This offer is if 2 item Fs are purchased, an extra is free. Having it as 3 works with the current solution but 2 does not.
+        "F": (2, "F"), # This offer is if 2 item Fs are purchased, an extra is free. Having it as 3 works with the current solution but 2 does not.
         "N": (3, "M"),
         "R": (3, "Q"),
         "U": (3, "U") # TODO
@@ -68,7 +68,9 @@ def checkout(skus):
         if item in free_item_offers.keys():
             required_quantity, free_item = free_item_offers.get(item)
             eligible_free_items = count // required_quantity
-            if free_item in item_counts:
+            if free_item == item:
+                item_counts[item] -= eligible_free_items
+            elif free_item in item_counts:
                 item_counts[free_item] = max(item_counts.get(free_item) - eligible_free_items, 0)
 
     for item, count in item_counts.items():
@@ -83,3 +85,4 @@ def checkout(skus):
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
