@@ -9,7 +9,8 @@ def checkout(skus):
         "B": 30,
         "C": 20,
         "D": 15,
-        "E": 40
+        "E": 40,
+        "F": 10
     }
 
     # Some items are multi-priced: buy n of them, and they'll cost you y pounds.
@@ -22,7 +23,8 @@ def checkout(skus):
     # When some items are purchased in a specified quantity, other items are free.
     # E.g. buy 2 of item E and get an item B for free:
     free_item_offers: dict[str: tuple[int, str]] = {
-        "E": (2, "B")
+        "E": (2, "B"),
+        "F": (2, "F")
     }
 
     # For any illegal input, return -1:
@@ -53,3 +55,4 @@ def checkout(skus):
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
