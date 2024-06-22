@@ -41,9 +41,19 @@ from lib.solutions.CHK import checkout_solution
     ("K", 80),
     ("NNNM", 120),
     ("NNN", 120),
-    ("NNNMM", 135)
+    ("NNNMM", 135),
+    ("PPPPP", 200),
+    ("PPPPPP", 250),
+    ("QQQ", 80),
+    ("QQ", 60),
+    ("RRRQ", 150),
+    ("RQ", 80),
+    ("UUUU", 120),
+    ("UUUUUU", 200),
+    ("UUUUUUUU", 240)
 ])
 def test_checkout(skus, expected_total):
     assert checkout_solution.checkout(skus) == expected_total
+
 
 
