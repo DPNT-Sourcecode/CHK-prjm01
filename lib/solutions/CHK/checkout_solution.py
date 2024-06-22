@@ -24,7 +24,7 @@ def checkout(skus):
     # E.g. buy 2 of item E and get an item B for free:
     free_item_offers: dict[str: tuple[int, str]] = {
         "E": (2, "B"),
-        "F": (2, "F")
+        "F": (3, "F") # This offer is if 2 item Fs are purchased, an extra is free. Having it as 3 works with the current solution but 2 does not.
     }
 
     # For any illegal input, return -1:
@@ -55,4 +55,5 @@ def checkout(skus):
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
 
