@@ -14,7 +14,7 @@ def checkout(skus):
 
     # Some items are multi-priced: buy n of them, and they'll cost you y pounds.
     # E.g. buy 3 of item A and get them fora combined total of 130:
-    multi_item_prices: dict[str: list[tuple[int, int]]] = {
+    multi_item_offers: dict[str: list[tuple[int, int]]] = {
         "A": [(5, 200), (3, 130)],
         "B": [(2, 45)]
     }
@@ -40,13 +40,16 @@ def checkout(skus):
             if free_item in item_counts:
                 item_counts[free_item] = max(item_counts.get(free_item) - eligible_free_items, 0)
         # Apply multi item offers next:
-        if item in multi_item_prices.keys():
-            required_quantity, offer_price = multi_item_prices.get(item)
-            offers_redeemed = count // required_quantity
-            count = count % required_quantity
-            total += offers_redeemed * offer_price
+        if item in multi_item_offers.keys():
+            for offer in multi_item_offers.get(item):
+                required_quantity, offer_price = offer
+                offers_redeemed = count // required_quantity
+                count = count % required_quantity
+                total += offers_redeemed * offer_price
+        # Add any remaining items to the total after the offers:
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
 
 
