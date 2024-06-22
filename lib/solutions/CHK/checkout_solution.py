@@ -32,6 +32,7 @@ def checkout(skus):
     item_counts: Counter[str] = Counter(skus)
 
     total: int = 0
+
     for item, count in item_counts.items():
         # Apply free item offers first:
         if item in free_item_offers.keys():
@@ -39,6 +40,8 @@ def checkout(skus):
             eligible_free_items = count // required_quantity
             if free_item in item_counts:
                 item_counts[free_item] = max(item_counts.get(free_item) - eligible_free_items, 0)
+
+    for item, count in item_counts.items():
         # Apply multi item offers next:
         if item in multi_item_offers.keys():
             for offer in multi_item_offers.get(item):
@@ -50,6 +53,7 @@ def checkout(skus):
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
 
 
 
