@@ -3,6 +3,7 @@ import pytest
 from lib.solutions.CHK import checkout_solution
 
 @pytest.mark.parametrize("skus, expected_total", [
+    # Round 1 tests:
     ("", 0),
     ("A", 50),
     ("AA", 100),
@@ -18,3 +19,4 @@ from lib.solutions.CHK import checkout_solution
 ])
 def test_checkout(skus, expected_total):
     assert checkout_solution.checkout(skus) == expected_total
+
