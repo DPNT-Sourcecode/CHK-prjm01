@@ -15,7 +15,7 @@ def checkout(skus):
         "H": 10,
         "I": 35,
         "J": 60,
-        "K": 80,
+        "K": 70,
         "L": 90,
         "M": 15,
         "N": 40,
@@ -86,3 +86,4 @@ def checkout(skus):
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
