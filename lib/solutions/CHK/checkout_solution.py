@@ -87,7 +87,7 @@ def checkout(skus):
         group_count = sum(item_counts[item] for item in items)
         offers_redeemed = group_count // required_quantity
         total += offers_redeemed * group_price
-        remaining_group_count = offers_redeemed * group_price
+        remaining_group_count = offers_redeemed * required_quantity
         for item in items:
             if remaining_group_count <= 0:
                 break
@@ -108,6 +108,7 @@ def checkout(skus):
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
 
 
 
