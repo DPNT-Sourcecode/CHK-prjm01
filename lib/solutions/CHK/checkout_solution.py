@@ -23,14 +23,14 @@ def checkout(skus):
         "P": 50,
         "Q": 30,
         "R": 50,
-        "S": 30,
+        "S": 20,
         "T": 20,
         "U": 40,
         "V": 50,
         "W": 20,
-        "X": 90,
-        "Y": 10,
-        "Z": 50
+        "X": 17,
+        "Y": 20,
+        "Z": 21
     }
 
     # Some items are multi-priced: buy n of them, and they'll cost you y pounds.
@@ -39,7 +39,7 @@ def checkout(skus):
         "A": [(5, 200), (3, 130)],
         "B": [(2, 45)],
         "H": [(10, 80), (5, 45)],
-        "K": [(2, 150)],
+        "K": [(2, 120)],
         "P": [(5, 200)],
         "Q": [(3, 80)],
         "V": [(3, 130), (2, 90)]
@@ -49,10 +49,10 @@ def checkout(skus):
     # E.g. buy 2 of item E and get an item B for free:
     free_item_offers: dict[str: tuple[int, str]] = {
         "E": (2, "B"),
-        "F": (2, "F"), # This offer is if 2 item Fs are purchased, an extra is free. Having it as 3 works with the current solution but 2 does not.
+        "F": (2, "F"),
         "N": (3, "M"),
         "R": (3, "Q"),
-        "U": (3, "U") # TODO
+        "U": (3, "U")
     }
 
     # For any illegal input, return -1:
@@ -86,4 +86,5 @@ def checkout(skus):
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
 
