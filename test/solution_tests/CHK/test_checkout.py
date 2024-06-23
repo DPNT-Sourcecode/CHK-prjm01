@@ -60,4 +60,3 @@ from lib.solutions.CHK import checkout_solution
 ])
 def test_checkout(skus, expected_total):
     assert checkout_solution.checkout(skus) == expected_total
-
