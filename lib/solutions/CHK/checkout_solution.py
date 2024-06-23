@@ -55,6 +55,14 @@ def checkout(skus):
         "U": (3, "U")
     }
 
+    # When a specified number of a set of items are purchased, they are given a "group discount" price.
+    # E.g. buy any 3 of items S, T, X, Y, Z for 45:
+    group_discounts: list[tuple[list[str], int, int]] = [
+        # I am assuming that the 3 cheapest items in the basket out of the group will be those selected for the offer,
+        # hence the item list is ordered by price ascending:
+        (["X", "S", "T", "Y", "Z"], 3, 45)
+    ]
+
     # For any illegal input, return -1:
     if not all(item in item_prices for item in skus):
         return -1
@@ -74,6 +82,20 @@ def checkout(skus):
                 eligible_free_items = count // required_quantity
                 item_counts[free_item] = max(item_counts.get(free_item) - eligible_free_items, 0)
 
+    for items, required_quantity, group_price in group_discounts:
+        # Apply group discount offers next:
+        group_count = sum(item_counts[item] for item in items)
+        offers_redeemed = group_count // required_quantity
+        total += offers_redeemed * group_price
+        remaining_group_count = offers_redeemed * group_price
+        for item in items:
+            if remaining_group_count <= 0:
+                break
+            if item in item_counts:
+                used_in_offer = min(item_counts[item], remaining_group_count)
+                item_counts[item] -= used_in_offer
+                remaining_group_count -= used_in_offer
+
     for item, count in item_counts.items():
         # Apply multi item offers next:
         if item in multi_item_offers.keys():
@@ -86,5 +108,6 @@ def checkout(skus):
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
 
 
