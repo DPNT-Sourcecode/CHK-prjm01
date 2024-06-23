@@ -60,9 +60,9 @@ from lib.solutions.CHK import checkout_solution
     # Round 5 tests:
     ("STX", 45),
     ("SSSS", 65),
-    ("STXYZ", 86),
-    ("ZYXTS", 86),
-    ("SSSZTTTZXXXZYYYZZZZZSSSAAAWO", 517),
+    ("STXYZ", 82),
+    ("ZYXTS", 82),
+    ("SSSZTTTZXXXZYYYZZZZZSSSAAAWO", 509),
     # Failing tests:
     ("SSSZ", 65),
     ("ZZZS", 65),
@@ -73,4 +73,5 @@ from lib.solutions.CHK import checkout_solution
 ])
 def test_checkout(skus, expected_total):
     assert checkout_solution.checkout(skus) == expected_total
+
 
