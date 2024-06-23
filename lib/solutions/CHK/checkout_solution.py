@@ -60,7 +60,7 @@ def checkout(skus):
     group_discounts: list[tuple[list[str], int, int]] = [
         # I am assuming that the 3 cheapest items in the basket out of the group will be those selected for the offer,
         # hence the item list is ordered by price ascending:
-        (["Z", "S", "T", "X", "Y"], 3, 45)
+        (["Z", "S", "T", "Y", "X"], 3, 45)
     ]
 
     # For any illegal input, return -1:
@@ -108,5 +108,6 @@ def checkout(skus):
         item_price: int = item_prices.get(item)
         total += count * item_price
     return total
+
 
 
